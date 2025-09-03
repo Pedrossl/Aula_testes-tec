@@ -15,17 +15,14 @@ export abstract class Conta implements ITransacionavel {
     this.saldo = saldoInicial;
   }
 
-  depositar(valor: number): void {
+  depositar(valor: number): string {
     if (valor <= 0) {
-      console.error("O valor do depósito deve ser positivo.");
-      return;
+      return "O valor do depósito deve ser positivo.";
     }
     this.saldo += valor;
-    console.log(
-      `Depósito de R$${valor.toFixed(
-        2
-      )} realizado. Novo saldo: R$${this.saldo.toFixed(2)}`
-    );
+    return `Depósito de R$${valor.toFixed(
+      2
+    )} realizado. Novo saldo: R$${this.saldo.toFixed(2)}`;
   }
 
   consultarSaldo(): number {
@@ -43,11 +40,10 @@ export class ContaCorrente extends Conta {
     this.limiteChequeEspecial = limite;
   }
 
-  public sacar(valor: number): void {
+  public sacar(valor: number): string {
     const saldoDisponivel = this.saldo + this.limiteChequeEspecial;
     if (valor <= 0) {
-      console.error("O valor do saque deve ser positivo.");
-      return;
+      return "O valor do saque deve ser positivo.";
     }
     if (valor > saldoDisponivel) {
       throw new Error(
@@ -57,30 +53,27 @@ export class ContaCorrente extends Conta {
       );
     }
     this.saldo -= valor;
-    console.log(
-      `Saque de R$${valor.toFixed(
-        2
-      )} realizado. Novo saldo: R$${this.saldo.toFixed(2)}`
-    );
+    return `Saque de R$${valor.toFixed(
+      2
+    )} realizado. Novo saldo: R$${this.saldo.toFixed(2)}`;
   }
 }
 
 export class ContaPoupanca extends Conta {
-  public sacar(valor: number): void {
+  public sacar(valor: number): string {
     if (valor <= 0) {
-      console.error("O valor do saque deve ser positivo.");
-      return;
+      return "O valor do saque deve ser positivo.";
     }
     if (valor > this.saldo) {
       throw new Error(
-        `Saldo insuficiente. Saldo atual: R$${this.saldo.toFixed(2)}`
+        `Não foi possível sacar o valor R$${valor.toFixed(
+          2
+        )} na poupança. Saldo atual: R$${this.saldo.toFixed(2)}`
       );
     }
     this.saldo -= valor;
-    console.log(
-      `Saque de R$${valor.toFixed(
-        2
-      )} realizado. Novo saldo: R$${this.saldo.toFixed(2)}`
-    );
+    return `Saque de R$${valor.toFixed(
+      2
+    )} realizado. Novo saldo: R$${this.saldo.toFixed(2)}`;
   }
 }

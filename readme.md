@@ -34,9 +34,13 @@ npx jest
 
 Adicione ao seu tsconfig.json:
 ```jsonc
-"module": "esnext",
-"moduleResolution": "node",
-"verbatimModuleSyntax": false
+"verbatimModuleSyntax": false,
+ "module": "NodeNext",
+  "moduleResolution": "NodeNext",
+  "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+  // "verbatimModuleSyntax": false,
+
 ```
 
 Assim, você pode usar `import` e `export` normalmente em todos os arquivos TypeScript.
