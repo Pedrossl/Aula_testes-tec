@@ -43,5 +43,28 @@ Adicione ao seu tsconfig.json:
 
 ```
 
+```jsonc
+{
+"compilerOptions": {
+"module": "CommonJS",
+"target": "esnext",
+"verbatimModuleSyntax": false,
+"sourceMap": true,
+"declaration": true,
+"declarationMap": true,
+"noUncheckedIndexedAccess": true,
+"exactOptionalPropertyTypes": true,
+"strict": true,
+"jsx": "react-jsx",
+"isolatedModules": true,
+"noUncheckedSideEffectImports": true,
+"moduleDetection": "force",
+"skipLibCheck": true,
+"allowImportingTsExtensions": true,
+"noEmit": true
+}
+}
+```
+
 Assim, você pode usar `import` e `export` normalmente em todos os arquivos TypeScript.
 
